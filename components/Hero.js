@@ -33,7 +33,7 @@ export default function Hero() {
         <p className="eyebrow" data-hf>Доступен для новых проектов · RU / KZ</p>
         <Heading as="h1" id="heroTitle" className="h-hero" manual delay={0.1}
           text="Сайт как инструмент,|который *приводит клиентов*" />
-        <p className="lede" data-hf>Alex Web Studio проектирует сайты для бизнеса в России и Казахстане так, чтобы они не просто красиво выглядели, а работали на результат: объясняли ценность продукта, вызывали доверие и превращали посетителей в заявки.</p>
+        <p className="lede" data-hf>Проектирую сайты для бизнеса в России и Казахстане — не просто красивые, а работающие на результат: они объясняют ценность, вызывают доверие и превращают посетителей в заявки.</p>
         <div className="cta" data-hf>
           <a className="btn btn-primary" href="#work">Смотреть работы</a>
           <Link className="btn btn-ghost" href="/brief">Обсудить проект <IconArrow /></Link>

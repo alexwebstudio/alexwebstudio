@@ -7,6 +7,7 @@ import WorkCard, { projectSub } from '@/components/WorkCard';
 import { IconArrow } from '@/components/Icons';
 import about from '@/content/about.json';
 import { getService, getServices, getProjectsByKinds, toCard } from '@/lib/content';
+import { breadcrumbsLd, jsonLdScript } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -32,8 +33,15 @@ export default async function ServicePage({ params }) {
   const related = getProjectsByKinds(s.kinds).slice(0, 3).map(toCard);
   const others = getServices().filter(x => x.slug !== s.slug);
 
+  const crumbsLd = breadcrumbsLd([
+    { name: 'Главная', path: '/' },
+    { name: 'Услуги', path: '/#types' },
+    { name: s.title, path: `/services/${s.slug}` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(crumbsLd)} />
       <section className="svc-hero">
         <div className="wrap">
           <Reveal as="nav" className="crumbs" aria-label="Навигация">

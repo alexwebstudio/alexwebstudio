@@ -10,6 +10,8 @@ import Faq from '@/components/Faq';
 import { IconArrow } from '@/components/Icons';
 import { getProjects, getSettings, toCard } from '@/lib/content';
 
+export const metadata = { alternates: { canonical: '/' } };
+
 export default function HomePage() {
   const projects = getProjects();
   const featured = projects.filter(p => p.featured).map(toCard);

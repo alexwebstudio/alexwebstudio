@@ -8,6 +8,7 @@ import { IconArrowUp } from '@/components/Icons';
 import meta from '@/content/portfolio.json';
 import { getProject, getProjects } from '@/lib/content';
 import { parseBody } from '@/lib/markdown';
+import { breadcrumbsLd, jsonLdScript } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -55,8 +56,15 @@ export default async function ProjectPage({ params }) {
     ['Сайт', p.link ? <a href={p.link} target="_blank" rel="noopener noreferrer">{host} ↗</a> : ''],
   ].filter(f => f[1]);
 
+  const crumbsLd = breadcrumbsLd([
+    { name: 'Главная', path: '/' },
+    { name: 'Портфолио', path: '/portfolio' },
+    { name: p.title, path: `/portfolio/${p.slug}` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(crumbsLd)} />
       <section className="pj-hero">
         <div className="wrap">
           <Reveal as="nav" className="crumbs" aria-label="Навигация">

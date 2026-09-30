@@ -1,5 +1,15 @@
+# зависимости и сборка
 node_modules
 .next
 out
-.env*.local
+build
+
+# переменные окружения — НЕ коммитить (кроме .env.example)
+.env
+.env.*
+!.env.example
+
+# системное
 .DS_Store
+*.log
+npm-debug.log*

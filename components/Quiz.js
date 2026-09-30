@@ -184,6 +184,7 @@ export default function Quiz() {
                     <ContactFields idPrefix="q" kind={a.kind} value={a.contact} error={fieldErr.contact}
                       setKind={k => { update('kind', k, 'contacts'); setFieldErr(x => ({ ...x, contact: false })); }}
                       setValue={v => { update('contact', v, 'contacts'); setFieldErr(x => ({ ...x, contact: false })); }} />
+                    <p className="form-consent">Отправляя заявку, вы соглашаетесь с <a href="/privacy" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>.</p>
                   </>
                 )}
               </fieldset>

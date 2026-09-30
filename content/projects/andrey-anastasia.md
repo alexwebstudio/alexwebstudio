@@ -7,7 +7,7 @@ status: template
 platform: "Код"
 cover: "/portfolio/p17_digital-wedding-invite.jpg"
 link: "https://concept-alexwebstudio-wedding1.netlify.app"
-featured: true
+featured: false
 order: 9
 task: ""
 result: ""

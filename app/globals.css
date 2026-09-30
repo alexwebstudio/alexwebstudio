@@ -154,6 +154,9 @@ footer.site-footer{container-type:inline-size;position:relative;z-index:2;paddin
 .f-nav a{color:#f5f5f8;transition:color .25s}
 .f-nav a:hover{color:var(--violet)}
 .f-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(48px,6vw,76px);padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--f-mono);font-size:12px;color:#8b8b9a}
+.f-legal{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.f-legal a{color:#8b8b9a;transition:color .25s}
+.f-legal a:hover{color:var(--violet)}
 .f-soc{display:flex;gap:18px;align-items:center}
 .f-soc a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:#8b8b9a;transition:color .25s,transform .3s var(--ease)}
 .f-soc a svg{width:20px;height:20px}
@@ -224,7 +227,12 @@ html.no-preload .pl{display:none}
   font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
 .scroll-cue i{display:block;width:1px;height:28px;background:linear-gradient(#fff,transparent);animation:cue 2s var(--ease) infinite;transform-origin:top}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-@media(max-width:560px){.hero{padding-top:calc(var(--header-h) + 60px)}.cta{flex-direction:column;align-items:stretch;width:100%;padding:0 var(--pad)}.cta .btn{width:100%}}
+@media(max-width:560px){
+  .hero{padding-top:calc(var(--header-h) + 52px)}
+  .hero .lede{font-size:14px;line-height:1.5;margin-top:20px;max-width:34ch}
+  .cta{flex-direction:column;align-items:stretch;width:100%;padding:0 var(--pad);margin-top:26px}
+  .cta .btn{width:100%}
+}
 
 /* ============================================================
    ИЗБРАННЫЕ РАБОТЫ (Showcase)
@@ -303,9 +311,7 @@ html.no-preload .pl{display:none}
 .prod:hover{border-color:var(--line-2);background:var(--panel-2);transform:translateY(-4px)}
 .prod-top{display:flex;justify-content:space-between;align-items:center;gap:14px}
 .prod-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-2)}
-.prod-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
 .prod-soon .prod-tag{color:var(--mute)}
-.prod-soon .prod-tag::before{background:var(--dim);box-shadow:none}
 .prod-stat{font-family:var(--f-mono);font-size:12px;color:var(--mute)}
 .prod-stat em{font-style:normal;color:var(--fg)}
 .prod-main{margin-top:auto;display:flex;flex-direction:column;gap:12px}
@@ -455,6 +461,9 @@ html.no-preload .pl{display:none}
 .seg input:checked+span{background:#fff;border-color:#fff;color:#000}
 .seg input:focus-visible+span{outline:2px solid var(--violet-2);outline-offset:2px}
 .trap{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.form-consent{font-size:12.5px;line-height:1.5;color:var(--mute);margin:14px 0 2px}
+.form-consent a{color:var(--fg-2);border-bottom:1px solid var(--line-2);transition:color .25s,border-color .25s}
+.form-consent a:hover{color:#fff;border-color:#fff}
 .fallback{margin-top:18px;padding:20px;border:1px solid var(--line-2);border-radius:var(--r-m);background:rgba(255,255,255,.02)}
 .fallback p{font-size:14px;color:var(--fg-2);line-height:1.6;margin-bottom:14px}
 .fallback .btns{display:flex;flex-wrap:wrap;gap:8px}
@@ -698,6 +707,15 @@ html.no-preload .pl{display:none}
 .join-note{display:flex;gap:14px;align-items:flex-start;margin-top:clamp(24px,3vw,34px);color:var(--fg-2);font-size:15px;line-height:1.6;max-width:820px}
 .join-note::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:2px;background:var(--violet);margin-top:9px}
 @media(max-width:820px){.join-grid{grid-template-columns:1fr}.jcard{min-height:0}.jcard .btn{width:100%}}
+
+/* Юридическая страница (политика конфиденциальности) */
+.legal{max-width:820px}
+.legal section+section{margin-top:clamp(32px,4vw,48px)}
+.legal h2{font-family:var(--f-head);font-weight:500;font-size:clamp(20px,2vw,26px);letter-spacing:-.03em;line-height:1.2;margin-bottom:16px;color:#fff}
+.legal p{font-size:16px;line-height:1.75;color:var(--fg-2);margin-bottom:12px}
+.legal ul{list-style:none;margin:0 0 12px}
+.legal li{position:relative;padding-left:22px;font-size:16px;line-height:1.7;color:var(--fg-2);margin-bottom:8px}
+.legal li::before{content:"—";position:absolute;left:0;color:var(--violet-2)}
 
 /* 404 */
 .nf{min-height:100svh;display:flex;align-items:center;padding:calc(var(--header-h) + 40px) 0 80px}

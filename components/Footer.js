@@ -44,7 +44,10 @@ export default function Footer() {
         </nav>
       </div>
       <div className="f-bottom">
-        <div>© 2026 alexwebstudio — Все права защищены</div>
+        <div className="f-legal">
+          <span>© 2026 alexwebstudio — Все права защищены</span>
+          <Link href="/privacy">Политика конфиденциальности</Link>
+        </div>
         <div className="f-soc">
           {socials.map(({ key, url, label, Icon }) => (
             <a key={key} href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}><Icon /></a>

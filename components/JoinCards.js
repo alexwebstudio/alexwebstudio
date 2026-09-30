@@ -113,6 +113,7 @@ function JoinForm({ initialExp }) {
         <textarea id="j-extra" className="textarea" style={{ minHeight: 84 }} placeholder="Сколько времени готовы уделять, вопросы" value={f.extra} onChange={set('extra')} />
       </div>
 
+      <p className="form-consent">Отправляя заявку, вы соглашаетесь с <a href="/privacy" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>.</p>
       <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }} disabled={state === 'sending'} aria-busy={state === 'sending'}>
         {state === 'sending' ? <><span className="spinner" aria-hidden="true" /> Отправляю…</> : <>Отправить заявку <IconArrow /></>}
       </button>

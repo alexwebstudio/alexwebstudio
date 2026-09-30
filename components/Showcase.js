@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { projectSub } from './WorkCard';
 import Reveal from './Reveal';
 import { IconArrow } from './Icons';
-import { prefersReduced } from '@/lib/client';
+import { prefersReduced, scrollToTarget } from '@/lib/client';
 
 export default function Showcase({ projects }) {
   const [active, setActive] = useState(0);
@@ -17,6 +17,20 @@ export default function Showcase({ projects }) {
   const firstRun = useRef(true);
   const p = projects[active];
   const rest = projects.map((x, i) => ({ x, i })).filter(({ i }) => i !== active);
+
+  /* при выборе проекта показываем крупную карточку: если она не в поле
+     зрения (актуально для мобильных, где карточка выше списка) — плавно
+     прокручиваем к ней. */
+  const select = i => {
+    setActive(i);
+    const el = big.current;
+    if (!el) return;
+    requestAnimationFrame(() => {
+      const r = el.getBoundingClientRect();
+      const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 72;
+      if (r.top < headerH + 8 || r.top > innerHeight * 0.6) scrollToTarget(el);
+    });
+  };
 
   useEffect(() => {
     if (firstRun.current) { firstRun.current = false; return; }
@@ -43,7 +57,7 @@ export default function Showcase({ projects }) {
 
       <Reveal stagger className="sc-rest">
         {rest.map(({ x, i }) => (
-          <button type="button" key={x.slug} className="sc-tile" onClick={() => { setActive(i); big.current?.scrollIntoView({ block: 'nearest', behavior: prefersReduced() ? 'auto' : 'smooth' }); }} aria-label={`Показать проект ${x.title}`}>
+          <button type="button" key={x.slug} className="sc-tile" onClick={() => select(i)} aria-label={`Показать проект ${x.title}`}>
             <span className="sc-tile-media">
               {x.cover && <Image src={x.cover.src} alt="" fill sizes="(max-width: 900px) 50vw, 22vw" />}
             </span>

@@ -7,7 +7,7 @@ status: concept
 platform: "Tilda"
 cover: "/portfolio/p21_doughboy.jpg"
 link: "https://alexwebstudiodemo5.tilda.ws/doughboy"
-featured: true
+featured: false
 order: 7
 task: ""
 result: ""
