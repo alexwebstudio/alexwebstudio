@@ -101,6 +101,12 @@ main{position:relative;z-index:2}
 .link-u{display:inline-flex;align-items:center;gap:10px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.35);color:var(--fg-2);font-size:16px;transition:color .3s,border-color .3s,gap .35s var(--ease)}
 .link-u:hover{color:#fff;border-color:var(--violet-2);gap:14px}
 .link-u svg{width:16px;height:16px}
+/* компактнее кнопки на мобильных/планшетах — desktop не меняется */
+@media(max-width:768px){
+  .btn{min-height:48px;padding:13px 22px;font-size:15px;gap:8px}
+  .btn svg{width:17px;height:17px}
+  .btn-sm{min-height:42px;padding:10px 18px;font-size:13.5px}
+}
 
 /* ============================================================
    ШАПКА И МЕНЮ

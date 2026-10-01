@@ -22,7 +22,13 @@ export async function POST(request) {
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chat = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chat) return Response.json({ ok: false, error: 'not-configured' }, { status: 503 });
+  if (!token || !chat) {
+    // Чаще всего это значит, что на хостинге не заданы переменные окружения
+    // TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID (локально они берутся из .env.local,
+    // который намеренно не попадает в деплой). Смотрите логи функции /api/lead.
+    console.error('[lead] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID не заданы в окружении этого сервера — заявка не отправлена.');
+    return Response.json({ ok: false, error: 'not-configured' }, { status: 503 });
+  }
 
   const text = '<b>' + SOURCES[source] + '</b>\n\n' +
     clean.map(([k, v]) => '<b>' + esc(k) + ':</b> ' + esc(v)).join('\n') +
@@ -36,9 +42,13 @@ export async function POST(request) {
       signal: AbortSignal.timeout(10000),
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || data.ok === false) return Response.json({ ok: false, error: 'telegram' }, { status: 502 });
+    if (!res.ok || data.ok === false) {
+      console.error('[lead] Telegram API вернул ошибку:', res.status, data && data.description);
+      return Response.json({ ok: false, error: 'telegram' }, { status: 502 });
+    }
     return Response.json({ ok: true });
-  } catch {
+  } catch (e) {
+    console.error('[lead] Не удалось обратиться к Telegram:', e && e.message);
     return Response.json({ ok: false, error: 'telegram' }, { status: 502 });
   }
 }
