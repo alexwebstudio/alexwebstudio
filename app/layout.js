@@ -16,12 +16,23 @@ export const metadata = {
   authors: [{ name: 'AlexWebStudio' }],
   openGraph: {
     type: 'website', locale: 'ru_RU', siteName: 'AlexWebStudio', url: '/',
-    images: [{ url: '/images/preview.jpg', width: 1200, height: 1200 }],
+    images: [{ url: '/images/preview.jpg', width: 1200, height: 1200, alt: 'AlexWebStudio — разработка сайтов' }],
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary_large_image', images: ['/images/preview.jpg'] },
   icons: { icon: '/images/favicon.svg', apple: '/images/preview.jpg' },
   verification: { google: 'qtXbQVBaCC6v8RDU9ZV0k3fUgVZHvfCc2bzX7riVO_w' },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true, follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+  },
+};
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'AlexWebStudio',
+  url: settings.siteUrl,
+  inLanguage: 'ru-RU',
 };
 
 export const viewport = { themeColor: '#050507', viewportFit: 'cover' };
@@ -35,6 +46,7 @@ export default function RootLayout({ children }) {
     <html lang="ru" className={`${logoFont.variable} ${bodyFont.variable} ${monoFont.variable} ${headingFont.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: boot }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd).replace(/</g, '\\u003c') }} />
       </head>
       <body>
         <div className="glow-bg" aria-hidden="true" />

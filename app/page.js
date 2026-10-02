@@ -9,8 +9,9 @@ import Services from '@/components/Services';
 import Faq from '@/components/Faq';
 import { IconArrow } from '@/components/Icons';
 import { getProjects, getSettings, toCard } from '@/lib/content';
+import { og } from '@/lib/seo';
 
-export const metadata = { alternates: { canonical: '/' } };
+export const metadata = { alternates: { canonical: '/' }, openGraph: og('/') };
 
 export default function HomePage() {
   const projects = getProjects();

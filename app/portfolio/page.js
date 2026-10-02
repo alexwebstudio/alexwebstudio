@@ -3,11 +3,13 @@ import Reveal from '@/components/Reveal';
 import PortfolioGrid from '@/components/PortfolioGrid';
 import meta from '@/content/portfolio.json';
 import { getProjects, toCard } from '@/lib/content';
+import { og } from '@/lib/seo';
 
 export const metadata = {
   title: 'Портфолио',
   description: 'Сайты, сделанные alexwebstudio: реальные проекты для заказчиков, концепты и шаблоны. Лендинги, многостраничные сайты, интернет-магазины и пригласительные.',
   alternates: { canonical: '/portfolio' },
+  openGraph: og('/portfolio'),
 };
 
 export default function PortfolioPage() {

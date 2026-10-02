@@ -3,11 +3,13 @@ import Reveal from '@/components/Reveal';
 import CtaBand from '@/components/CtaBand';
 import { IconArrowUp } from '@/components/Icons';
 import reviews from '@/content/reviews.json';
+import { og } from '@/lib/seo';
 
 export const metadata = {
   title: 'Отзывы клиентов',
   description: 'Отзывы клиентов alexwebstudio о разработке сайтов: многостраничный сайт, каталог, пригласительное, интернет-магазин.',
   alternates: { canonical: '/reviews' },
+  openGraph: og('/reviews'),
 };
 
 const initials = n => (n.replace(/[^A-Za-zА-Яа-яЁё]/g, '').slice(0, 2) || '•').toUpperCase();

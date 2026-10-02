@@ -7,7 +7,8 @@ import WorkCard, { projectSub } from '@/components/WorkCard';
 import { IconArrow } from '@/components/Icons';
 import about from '@/content/about.json';
 import { getService, getServices, getProjectsByKinds, toCard } from '@/lib/content';
-import { breadcrumbsLd, jsonLdScript } from '@/lib/seo';
+import { breadcrumbsLd, jsonLdScript, og } from '@/lib/seo';
+import { priceRows } from '@/lib/price';
 
 export const dynamicParams = false;
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }) {
     title: s.title,
     description: s.desc.slice(0, 180),
     alternates: { canonical: `/services/${s.slug}` },
+    openGraph: og(`/services/${s.slug}`),
   };
 }
 
@@ -57,8 +59,7 @@ export default async function ServicePage({ params }) {
               </Reveal>
             </div>
             <Reveal as="dl" className="svc-facts">
-              <div><dt>Цена, ₽</dt><dd>{s.rub}</dd></div>
-              <div><dt>Цена, ₸</dt><dd>{s.kzt}</dd></div>
+              {priceRows(s).map(r => <div key={r.label}><dt>{r.label}</dt><dd>{r.value}</dd></div>)}
               <div><dt>Срок</dt><dd>{s.term}</dd></div>
             </Reveal>
           </div>

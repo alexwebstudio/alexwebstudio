@@ -25,7 +25,13 @@ export async function generateMetadata({ params }) {
     title: `${p.title} — ${meta.statuses[p.status]?.label.toLowerCase()}`,
     description: desc,
     alternates: { canonical: `/portfolio/${p.slug}` },
-    openGraph: p.cover ? { images: [{ url: p.cover.src, width: p.cover.width, height: p.cover.height }] } : undefined,
+    openGraph: {
+      type: 'article', locale: 'ru_RU', siteName: 'AlexWebStudio',
+      url: `/portfolio/${p.slug}`,
+      images: p.cover
+        ? [{ url: p.cover.src, width: p.cover.width, height: p.cover.height, alt: `Скриншот сайта ${p.title}` }]
+        : [{ url: '/images/preview.jpg', width: 1200, height: 1200, alt: 'AlexWebStudio' }],
+    },
   };
 }
 

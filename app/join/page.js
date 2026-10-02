@@ -1,11 +1,13 @@
 import Heading from '@/components/Heading';
 import Reveal from '@/components/Reveal';
 import JoinCards from '@/components/JoinCards';
+import { og } from '@/lib/seo';
 
 export const metadata = {
   title: 'Вступить в команду',
   description: 'Оставьте заявку, чтобы работать вместе с alexwebstudio: разработка, Tilda, дизайн, продажи, SMM. С опытом и без опыта.',
   alternates: { canonical: '/join' },
+  openGraph: og('/join'),
 };
 
 export default function JoinPage() {

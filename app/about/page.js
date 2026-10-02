@@ -5,11 +5,13 @@ import Reveal from '@/components/Reveal';
 import { Marquee, Principles, ProcessAccordion, Statement } from '@/components/AboutParts';
 import { IconArrow } from '@/components/Icons';
 import about from '@/content/about.json';
+import { og } from '@/lib/seo';
 
 export const metadata = {
   title: 'Обо мне',
   description: 'Александр — веб-разработчик, основатель alexwebstudio. Как я работаю: этапы, принципы и подход к сайтам для бизнеса в России и Казахстане.',
   alternates: { canonical: '/about' },
+  openGraph: og('/about'),
 };
 
 const BENTO = ['b-lg', 'b-2', '', '', 'b-w'];

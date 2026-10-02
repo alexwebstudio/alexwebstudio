@@ -3,21 +3,25 @@ import Link from 'next/link';
 import services from '@/content/services.json';
 import Reveal from './Reveal';
 import { IconArrow } from './Icons';
+import { priceFrom } from '@/lib/price';
 
 export default function Services() {
   return (
     <Reveal stagger className="svc-grid">
-      {services.map((s, i) => (
+      {services.map((s, i) => {
+        const pf = priceFrom(s);
+        return (
         <Link key={s.id} className="svc" href={`/services/${s.slug}`}>
           <span className="svc-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <span className="svc-title">{s.title}</span>
           <span className="svc-fit">{s.lead}</span>
           <span className="svc-foot">
-            <span className="svc-price">{s.rub}<span>{s.kzt} · {s.term}</span></span>
+            <span className="svc-price">{pf.rub}<span>{pf.kzt} · {s.term}</span></span>
             <span className="svc-more" aria-hidden="true"><IconArrow /></span>
           </span>
         </Link>
-      ))}
+        );
+      })}
       <Link className="svc svc-help" href="/brief">
         <span className="svc-num" aria-hidden="true">?</span>
         <span className="svc-title">Не знаете, что выбрать?</span>

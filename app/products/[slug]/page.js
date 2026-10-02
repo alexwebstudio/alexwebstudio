@@ -7,7 +7,7 @@ import WorkCard from '@/components/WorkCard';
 import { IconArrow, IconArrowUp } from '@/components/Icons';
 import about from '@/content/about.json';
 import { getProduct, getProducts, getProjectsByKinds, toCard } from '@/lib/content';
-import { breadcrumbsLd, jsonLdScript } from '@/lib/seo';
+import { breadcrumbsLd, jsonLdScript, og } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -23,6 +23,7 @@ export async function generateMetadata({ params }) {
     title: p.title,
     description: (p.purpose || p.desc).slice(0, 180),
     alternates: { canonical: `/products/${p.slug}` },
+    openGraph: og(`/products/${p.slug}`),
   };
 }
 

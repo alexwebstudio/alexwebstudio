@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import settings from '@/content/settings.json';
-import { CONTACT_KINDS, leadText } from '@/lib/lead';
+import { CONTACT_KINDS, isPhoneKind, leadText, maskPhone } from '@/lib/lead';
 import { prefersReduced } from '@/lib/client';
 import { IconPhone, IconTelegram, IconWhatsapp } from './Icons';
 
@@ -11,6 +11,20 @@ const KIND_ICONS = { telegram: IconTelegram, whatsapp: IconWhatsapp, phone: Icon
 
 export function ContactFields({ kind, setKind, value, setValue, error, idPrefix = 'c' }) {
   const k = CONTACT_KINDS[kind];
+  const valueRef = useRef(value);
+  valueRef.current = value;
+
+  // при выборе «телефон/WhatsApp» сразу форматируем уже введённое значение
+  useEffect(() => {
+    if (isPhoneKind(kind)) {
+      const masked = maskPhone(valueRef.current);
+      if (masked !== valueRef.current) setValue(masked);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kind]);
+
+  const onChange = e => setValue(isPhoneKind(kind) ? maskPhone(e.target.value) : e.target.value);
+
   return (
     <>
       <div className="field">
@@ -30,7 +44,7 @@ export function ContactFields({ kind, setKind, value, setValue, error, idPrefix 
       <div className={`field${error ? ' err' : ''}`}>
         <label className="f-lab" htmlFor={`${idPrefix}-contact`}>{k.label} *</label>
         <input id={`${idPrefix}-contact`} className="input" type={k.type} inputMode={k.inputMode} autoComplete={kind === 'telegram' ? 'off' : 'tel'}
-          placeholder={k.placeholder} value={value} onChange={e => setValue(e.target.value)} aria-invalid={!!error} aria-describedby={error ? `${idPrefix}-contact-err` : undefined} />
+          placeholder={k.placeholder} value={value} onChange={onChange} maxLength={kind === 'telegram' ? 40 : 18} aria-invalid={!!error} aria-describedby={error ? `${idPrefix}-contact-err` : undefined} />
         {error && <p className="f-err" id={`${idPrefix}-contact-err`}>{k.error}</p>}
       </div>
     </>

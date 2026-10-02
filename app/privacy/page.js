@@ -3,11 +3,13 @@ import Heading from '@/components/Heading';
 import Reveal from '@/components/Reveal';
 import { PRIVACY, PRIVACY_UPDATED } from '@/content/privacy';
 import { getSettings } from '@/lib/content';
+import { og } from '@/lib/seo';
 
 export const metadata = {
   title: 'Политика конфиденциальности',
   description: 'Политика в отношении обработки персональных данных на сайте alexwebstudio.ru в соответствии с ФЗ-152 «О персональных данных».',
   alternates: { canonical: '/privacy' },
+  openGraph: og('/privacy'),
   robots: { index: true, follow: true },
 };
 
