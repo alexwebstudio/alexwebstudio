@@ -262,7 +262,14 @@ html.no-preload .pl{display:none}
 .sc-tile-meta{display:flex;flex-direction:column;gap:3px}
 .sc-tile-title{font-family:var(--f-head);font-weight:500;font-size:16px;letter-spacing:-.02em}
 .sc-tile-sub{font-size:13px;color:var(--mute)}
-@media(max-width:900px){.sc-big{grid-template-columns:1fr}.sc-rest{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  /* на мобильном карточка складывается в столбец; элемент картинки больше
+     не растягивается гридом по высоте, а задаёт её через соотношение 16:10
+     (стабильно во всех браузерах, включая мобильный Safari) */
+  .sc-big{grid-template-columns:1fr;align-items:start}
+  .sc-big-media{aspect-ratio:auto;height:0;padding-bottom:62.5%}
+  .sc-rest{grid-template-columns:1fr 1fr}
+}
 @media(max-width:520px){.sc-rest{grid-template-columns:1fr}}
 
 /* карточки работ (портфолио, услуги) */
